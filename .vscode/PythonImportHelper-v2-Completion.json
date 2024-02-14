@@ -1,0 +1,76 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "RequestValidationError",
+        "importPath": "fastapi.exceptions",
+        "description": "fastapi.exceptions",
+        "isExtraImport": true,
+        "detail": "fastapi.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "Usuario",
+        "importPath": "models",
+        "description": "models",
+        "isExtraImport": true,
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = FastAPI()\n@app.post(\"/cadastrarUsuario\")\nasync def cadastrar_usuario(usuario: Usuario):\n    #Verifica se os campos estão vazios\n    if not usuario.name or not usuario.email or not usuario.senha:\n        raise HTTPException(status_code=400, detail=\"O preenchimento dos campos é obrigátorio\")\n    return {\"message\": \"Usuário cadastrado com sucesso!\"}\n# Torna todos os campos do corpo requisicao obrigatorios\n@app.exception_handler(RequestValidationError)\nasync def validation_exception_handler(request, exc):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Usuario",
+        "kind": 6,
+        "importPath": "models",
+        "description": "models",
+        "peekOfCode": "class Usuario(BaseModel):\n    name:str;\n    email:str;\n    senha:str;",
+        "detail": "models",
+        "documentation": {}
+    }
+]
