@@ -24,6 +24,14 @@
         "documentation": {}
     },
     {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "RequestValidationError",
         "importPath": "fastapi.exceptions",
         "description": "fastapi.exceptions",
@@ -56,12 +64,27 @@
         "documentation": {}
     },
     {
-        "label": "uuid",
-        "kind": 6,
+        "label": "validar_dados_usuario",
+        "importPath": "validations",
+        "description": "validations",
         "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
+        "detail": "validations",
+        "documentation": {}
+    },
+    {
+        "label": "validar_pedido",
+        "importPath": "validations",
+        "description": "validations",
+        "isExtraImport": true,
+        "detail": "validations",
+        "documentation": {}
+    },
+    {
+        "label": "verificar_lista_vazia",
+        "importPath": "validations",
+        "description": "validations",
+        "isExtraImport": true,
+        "detail": "validations",
         "documentation": {}
     },
     {
@@ -113,6 +136,15 @@
         "documentation": {}
     },
     {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
         "label": "app",
         "kind": 5,
         "importPath": "app",
@@ -155,6 +187,33 @@
         "description": "models",
         "peekOfCode": "class Pedido(BaseModel):\n    id_produto:int;\n    id_cliente:int;\n    quantidade :int;",
         "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "verificar_lista_vazia",
+        "kind": 2,
+        "importPath": "validations",
+        "description": "validations",
+        "peekOfCode": "def verificar_lista_vazia(lista, mensagem):\n    if len(lista) == 0:\n        raise HTTPException(status_code=404, detail=mensagem)\n    else:\n        return lista\ndef validar_pedido(pedido, db_produtos, db_clients):\n    if pedido.id_cliente<1 or pedido.id_produto<1 or pedido.quantidade<1:\n        return False , \"O campo deve receber valores positivos e diferentes de 0\"\n    if not pedido.id_cliente or not pedido.id_produto or not pedido.quantidade:\n        return False, \"O preenchimento dos campos é obrigátorio\"",
+        "detail": "validations",
+        "documentation": {}
+    },
+    {
+        "label": "validar_pedido",
+        "kind": 2,
+        "importPath": "validations",
+        "description": "validations",
+        "peekOfCode": "def validar_pedido(pedido, db_produtos, db_clients):\n    if pedido.id_cliente<1 or pedido.id_produto<1 or pedido.quantidade<1:\n        return False , \"O campo deve receber valores positivos e diferentes de 0\"\n    if not pedido.id_cliente or not pedido.id_produto or not pedido.quantidade:\n        return False, \"O preenchimento dos campos é obrigátorio\"\n    # verificar se o produto existe\n    produto_encontrado = None\n    for produto in db_produtos:\n        if produto[\"id\"] == pedido.id_produto:\n            produto_encontrado= produto",
+        "detail": "validations",
+        "documentation": {}
+    },
+    {
+        "label": "validar_dados_usuario",
+        "kind": 2,
+        "importPath": "validations",
+        "description": "validations",
+        "peekOfCode": "def validar_dados_usuario(usuario):\n    # Se o ID estiver vazio, preenche com id randomico\n    if not usuario.id:\n        usuario.id = str(uuid.uuid4())\n    #Verifica se os campos estão vazios\n    if not usuario.name or not usuario.email or not usuario.senha:\n        return False, \"O preenchimento dos campos é obrigátorio\"\n    return True, \"\"",
+        "detail": "validations",
         "documentation": {}
     }
 ]
