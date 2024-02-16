@@ -117,7 +117,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = FastAPI()\ndb_users: List[Usuario]=[]\ndb_clients :List[Cliente]=[]\ndb_pedidos :List[Pedido]=[]\n@app.get(\"/\")\nasync def inicio():\n    return {\"message\":\"Bem-vindo a Api Pedidos!\"}\n@app.get(\"/usuarios\")\nasync def listar_usuarios():\n    return db_users",
+        "peekOfCode": "app = FastAPI()\ndb_users: List[Usuario]=[]\ndb_clients :List[Cliente]=[]\ndb_pedidos :List[Pedido]=[]\ndb_produtos :List[Produto]=[]\n@app.get(\"/\")\nasync def inicio():\n    return {\"message\":\"Bem-vindo a Api Pedidos!\"}\n@app.get(\"/usuarios\")\nasync def listar_usuarios():",
         "detail": "app",
         "documentation": {}
     },
@@ -126,7 +126,7 @@
         "kind": 6,
         "importPath": "models",
         "description": "models",
-        "peekOfCode": "class Usuario(BaseModel):\n    #gerar um valor padrão para o campo. \n    #lambda gera um UUID aleatorio\n    id: str = Field(default_factory=lambda: str(uuid.uuid4())),\n    name:str;\n    email:str;\n    senha:str;\nclass Cliente(BaseModel):\n    #gerar um valor padrão para o campo. \n    #lambda gera um UUID aleatorio",
+        "peekOfCode": "class Usuario(BaseModel):\n    #gerar um valor padrão para o campo. \n    #lambda gera um UUID aleatorio\n    id: str = Field(default_factory=lambda: str(uuid.uuid4())),\n    name:str;\n    email:str;\n    senha:str;\nclass Cliente(BaseModel):\n    name:str;\n    telephone:str;",
         "detail": "models",
         "documentation": {}
     },
@@ -135,7 +135,7 @@
         "kind": 6,
         "importPath": "models",
         "description": "models",
-        "peekOfCode": "class Cliente(BaseModel):\n    #gerar um valor padrão para o campo. \n    #lambda gera um UUID aleatorio\n    id: str = Field(default_factory=lambda: str(uuid.uuid4())),\n    name:str;\n    telephone:str;\n    address:str;\nclass Produto(BaseModel):\n    id: int;\n    descricao:str;",
+        "peekOfCode": "class Cliente(BaseModel):\n    name:str;\n    telephone:str;\n    address:str;\nclass Produto(BaseModel):\n    descricao:str;\n    quantidade_estoque:int;\n    preco_unitario:float;\nclass Pedido(BaseModel):\n    id_produto:int;",
         "detail": "models",
         "documentation": {}
     },
@@ -144,7 +144,7 @@
         "kind": 6,
         "importPath": "models",
         "description": "models",
-        "peekOfCode": "class Produto(BaseModel):\n    id: int;\n    descricao:str;\n    quantidade_estoque:int;\n    preco_unitario:float;\nclass Pedido(BaseModel):\n    id: int;\n    id_produto:int;\n    id_cliente:int;\n    valor_total:float;",
+        "peekOfCode": "class Produto(BaseModel):\n    descricao:str;\n    quantidade_estoque:int;\n    preco_unitario:float;\nclass Pedido(BaseModel):\n    id_produto:int;\n    id_cliente:int;\n    quantidade :int;",
         "detail": "models",
         "documentation": {}
     },
@@ -153,7 +153,7 @@
         "kind": 6,
         "importPath": "models",
         "description": "models",
-        "peekOfCode": "class Pedido(BaseModel):\n    id: int;\n    id_produto:int;\n    id_cliente:int;\n    valor_total:float;\n    quantidade :int;",
+        "peekOfCode": "class Pedido(BaseModel):\n    id_produto:int;\n    id_cliente:int;\n    quantidade :int;",
         "detail": "models",
         "documentation": {}
     }
